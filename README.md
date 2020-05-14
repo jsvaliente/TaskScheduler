@@ -30,9 +30,9 @@ Tasks can also be added to run every set period of time －by default in microse
 ```cpp
     task.add(foo, 1000);
 ```
-Tasks can be unqueued with the `remove´ method. Example:
+Tasks can be unqueued with the `remove` method. Example:
 ```cpp
-task.remove(foo);
+syntax highlightingtask.remove(foo);
 ```
 ### Change periodicity.
 Use the ´setPeriod´ method to change the period at which a task is executed. The first argument must contain the name of the function, the second parameter the new period. Set to '0' if the task must run as soon as possible. Example:
