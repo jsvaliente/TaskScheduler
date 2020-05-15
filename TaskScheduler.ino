@@ -1,8 +1,9 @@
-#include "TaskScheduler.h"
+#include "TaskScheduler.h" // Mandatory step.
 
-#define PRECISION micros
-#define LOOP_PREVENTION
+#define PRECISION micros // Optional step. The unit of time can be milliseconds or microseconds. Try to change the token of this definiton from 'micros' to 'millis'.
+#define LOOP_PREVENTION // Optional step. The loop prevention will avoid two tasks from topping the queue and preventing other tasks from running.
 
+// The following macros are exclusive for this example and is not mandatory for the use of the library.
 #if PRECISION == micros
 # define SECOND 1000000 // 1 s = 1000000 µs.
 # define UNIT "µs"
@@ -11,24 +12,24 @@
 # define UNIT "ms"
 #endif
 
-Scheduler task;
+Scheduler task; // Declaring a 'Scheduler' class object is mandatory.
 
-volatile int second = 0;
+volatile int second = 0; // This is a counter used exclusively in this example and is not mandatory for the usage of this library.
 
 void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
-  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT); // A led light is periodically switched on in this example.
+  Serial.begin(9600); // Messages are displayed in the terminal console.
   while (!Serial) {};
-  task.add(secondCounter, SECOND);
-  task.add(start, SECOND/2);
+  task.add(secondCounter, SECOND); // This task will be permanently running along the program.
+  task.add(start, SECOND/2); // This task will kick-off all the other tasks. Now there are 2 tasks in the queue.
 }
 
 void loop() {
-  task.run();
+  task.run(); // It is mandatory to call the 'run()' method in the loop.
 }
 
-void start() {
-  task.remove(start);
+void start() { // This task prints a message and call another task that will make an animation with 3 dots.
+  task.remove(start); // The task removes itself of the queue. The argument in this case if optional, and can be left blank in this kind of cases when a task wants to remove it self, as seen in other cases bellow.
   task.add(dot, SECOND/4);
   Serial.print(" " UNIT);
   printTab(2);
@@ -39,12 +40,12 @@ void start() {
   Serial.print("Start of program");
 }
 
-void dot() {
+void dot() { // Prints the dots periodically to create an animation in the console terminal and when it finishes it calls a couple of tasks.
   static int dots = 0;
   Serial.print(".");
   dots++;
   if (dots == 3) {
-    task.remove(dot);
+    task.remove(); // In this case the task removes itself, but unlike in the task above, no argument is used.
     task.add(ledOn, SECOND/2);
     task.add(taskA);
   }
@@ -128,7 +129,7 @@ void secondCounter() {
   second++;
 }
 
-void ledOn() {
+void ledOn() { // This and the next task could lead to a loop, as they mutually call each other.
   task.remove();
   digitalWrite(LED_BUILTIN, HIGH);
   timestamp();
