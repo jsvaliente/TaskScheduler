@@ -40,6 +40,10 @@ Tasks can be unqueued with the `remove` method. Example:
 ```cpp
 task.remove(foo);
 ```
+Call the remove method with no arguments to remove the present task. For example, the following call will remove function `foo` from the scheduler.
+```cpp
+void foo() { task.remove(); }
+```
 ### Change periodicity
 Use the ´setPeriod´ method to change the period at which a task is executed. The first argument must contain the name of the function, the second parameter the new period. Set to '0' if the task must run as soon as possible. Example:
 ```cpp
