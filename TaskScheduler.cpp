@@ -161,7 +161,7 @@ void Scheduler::run() {
     // Run the task.
     this->current->run();
   }
-  #if defined LOOP_PREVENTION // Only executed this fragment of code if the macro is defined.
+  #if defined LOOP_PREVENTION // Only executed this fragment of code if the macro is defined. This macro may be considered a pre-emptive scheduling.
   // Flag the tasks that have overflown their waiting period and are ready for exectuion.
   Task * temp = this->current;
   // Find the flagged task that has overflown the longest amount of time (if any).
