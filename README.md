@@ -5,6 +5,7 @@ This library allows to schedule the execution of tasks. It creates a circular qu
 - **Add a task** to the queue.
 - **Remove a task** from the queue.
 - **Modify the periodicity** at which a task is executed.
+
 The terms *add* and *remove* are used instead of *queue* and *unqueue* to make the abstraction independent of the underlining data structure.
 ## Files
 - **TaskScheduler.h**: c++ header file containing the declaration of two classes: `class Task` and `class Scheduler`. Only the last one needs to be invoqued. *See bellow*: **Usage**.
