@@ -1,3 +1,17 @@
+/* 
+ * Example file with a fictional case for demonstration purposes.
+ * The following tasks are called:
+ * start(): calls upon the other tasks.
+ * dot(): performs an animation printing 3 dots in the terminal console.
+ * taskA(): runs once and call itself to be removed from the queue, as well as it calls for taskB() to run a second afterwards.
+ * taskB(): prints a message periodically; the period of time between executions decreases in each execution.
+ * taskC(): prints a message one second after taskB().
+ * taskD(): prints a message at the end.
+ * end(): removes all the tasks from the queue.
+ * ledOn(): turns on a led and calls for ledOff() to run half a second later.
+ * ledOff(): turns off a led and calls for ledOn() to run half a second later.
+ */
+
 #include "TaskScheduler.h" // Mandatory step.
 
 #define PRECISION micros // Optional step. The unit of time can be milliseconds or microseconds. Try to change the token of this definiton from 'micros' to 'millis'.
