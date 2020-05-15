@@ -38,7 +38,7 @@ class Scheduler {
     ~Scheduler(); // Scheduler destruction.
     //void add(functionPointer function); // Adds a task to the queue that will repeat itself as soon as possible.
     void add(functionPointer function, uint64_t period = 0); // Adds a task to the queue that will repeat itself periodically.
-    bool remove(functionPointer function = NULL); // Removes a function from the queue. Returns '0' on success or '1' on failure to find a task with that function. 
+    bool remove(functionPointer function = NULL); // Removes a function from the queue. Returns '0' on success or '1' on failure to find a task with that function. Use no arguments to remove a task containing the function it is called inside of.
     bool setPeriod(functionPointer function, uint64_t period); // Modifies the amount of time between executions of a function. If set to '0', the function runs as soon as possible; in any other case, the function will not run for the first time for the selected period of time.
     void run(); // Each time this function is called, one task in the queue is called, and once it is executed, the pointer is left pointing to the next task in the queue.
   private:
