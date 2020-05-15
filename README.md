@@ -62,4 +62,4 @@ Defines the unit of meassurement of time. Time related arguments in this library
 ```
 As tasks can call each other this can eventually lead to and infinite loop in which a couple of task call each other and prevent other tasks from being executed. To prevent this situation enable this feature by defining this macro. It requires no tokens.
 ## Notes.
-A pattern of usage can be to have a couple of functions that mutually add each other and remove themselves from the queue. This can lead to an undesired behaviour that leads to a an infinite loop. As exmplained before, use the `LOOP_PREVENTION` macro for this purpose.
+Use this code at your own risk. There could be bugs or performance issues. Feel free to report any bug or send your feedback in the following forum post: https://forum.arduino.cc/index.php?topic=684393.0
