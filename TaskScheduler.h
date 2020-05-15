@@ -7,7 +7,7 @@
 
 #include <Arduino.h> // Required for the use of the 'micros()' function and the 'NULL' and 'uint64_t' data types.
 
-typedef void (*functionPointer) (void);
+typedef void (*functionPointer) (void); // Definition of a pointer to a function.
 
 class Task {
   public:
