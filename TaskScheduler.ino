@@ -10,6 +10,7 @@
  * end(): removes all the tasks from the queue.
  * ledOn(): turns on a led and calls for ledOff() to run half a second later.
  * ledOff(): turns off a led and calls for ledOn() to run half a second later.
+ * secondCounter(): counters the amount of elapsed seconds from start to end of the program.
  */
 
 #include "TaskScheduler.h" // Mandatory step.
@@ -102,7 +103,7 @@ void taskB() {
       if (counter < repetitions - 1) Serial.print("s");
     }
     Serial.print(".");
-    task.setPeriod(taskB, (repetitions - counter) * SECOND);
+    task.setPeriod(taskB, (repetitions - counter) * SECOND); // Changes the frequency with which the task is run.
     task.add(taskC, SECOND);
   }
   else {
