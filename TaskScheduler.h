@@ -21,15 +21,19 @@ class Task {
     void setPeriod(uint64_t period); // Modifies the amount of time between executions of a task.
     bool isFunction(functionPointer function); // Returns if the task is associated with a function.
     functionPointer getFunction(); // Returns the function associated to the task.
+    #if defined LOOP_PREVENTION
     void flag(); // Toggles the overflow flag.
     bool getFlag(); // Returns the state of the overflow flag.
+    #endif
     void run(); // Executes the task.
   private:
     functionPointer function; // Function it points to.
     Task * next; // Pointer to the next task in the queue.
     uint64_t timestamp; // Timestamp of the next time the task will be executed.
     uint64_t period; // Amount of time between executions.
+    #if defined LOOP_PREVENTION
     bool overflow; // If true it indicates that the task has exceeded the period and is a candidate for execution.
+    #endif
 };
 
 class Scheduler {
