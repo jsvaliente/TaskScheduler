@@ -191,6 +191,6 @@ void Scheduler::run() {
   // ...otherwise move to the next task in the queue.
   else
   #endif
-  // If the previous macro is not define, this line of code will run anyways.
+  // If the previous macro is not defined, this line of code will run anyways.
   this->current = this->current->getNext();
 }
