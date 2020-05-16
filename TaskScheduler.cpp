@@ -5,7 +5,9 @@ Task::Task(functionPointer function, Task * next, uint64_t period) {
   this->function = function;
   this->setNext(next);
   this->setPeriod(period);
+  #if defined LOOP_PREVENTION // Variable only needed for the feature of loop prevention.
   this->overflow = false;
+  #endif
 }
 
 Task::~Task() {}
@@ -52,6 +54,7 @@ functionPointer Task::getFunction() {
   return this->function;
 }
 
+#if defined LOOP_PREVENTION
 void Task::flag() {
   this->overflow = true;
 }
@@ -59,12 +62,15 @@ void Task::flag() {
 bool Task::getFlag() {
   return this->overflow;
 }
+#endif
 
 void Task::run() {
   // Execute the function.
   this->function();
+  #if defined LOOP_PREVENTION
   // Unflag the overflow.
   this->overflow = false;
+  #endif
 }
 
 Scheduler::Scheduler() {
